@@ -11,13 +11,13 @@ At the time of building this project the version of python that I was using was 
 pip install virtualenv
 ```
 ## Creating Virtual Environment 
-Navigate to the downloaded project and copy its path and paste it by replacing the directory word below
+Navigate to the downloaded project using cd command and specifing its path 
 ```
-cd directory
+cd path
 ```
 Running the below command creates a virtual environment
 ```
-python -m venv c:/applications/newpythonproject/venv
+python -m venv venv
 ```
 ## Activating Virtual Environment
 ```
@@ -27,8 +27,29 @@ venv\scripts\activate
 ```
 pip install -r requirements.txt
 ```
+## Deactivate Virtual Environment
+```
+deactivate
+```
 ## Downloading the Dataset
 Download the dataset in the project directory <br> <br>
 https://ai.stanford.edu/~amaas/data/sentiment/
 ## Exceuting the Project 
-Run the main.py file
+Go to the project directory using cd 
+```
+cd path
+```
+Run the app.py file <br>
+```
+python app.py
+```
+First train the model once <br>
+Training the model creates a pickle file named my_model <br>
+Now again run app.py file <br>
+```
+python app.py
+```
+Now test the custom review <br>
+A link is generated using which you can test the review <br>
+
+
