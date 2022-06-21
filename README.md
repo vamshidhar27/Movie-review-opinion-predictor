@@ -27,10 +27,6 @@ venv\scripts\activate
 ```
 pip install -r requirements.txt
 ```
-## Deactivate Virtual Environment
-```
-deactivate
-```
 ## Downloading the Dataset
 Download the dataset in the project directory <br> <br>
 https://ai.stanford.edu/~amaas/data/sentiment/
