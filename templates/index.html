@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sentiment Analysis</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css')}}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body style="background-image:url({{ url_for('static',filename='images/movie.png')}})">
+  <h1 id="heading">Sentiment Analysis for Movie Reviews</h1>
+  <div class="center">
+    <form action="http://127.0.0.1:5000/" method="post">
+      <label for="review">Enter the Review</label> <br><br>
+      <input type="text" name="moviereview"><br><br>
+      <label for="test">{{data}}</label><br>
+      <button class="btn btn-outline-secondary btn-lg" type="submit" name="button">Test</button>
+
+
+    </form>
+  </div>
+</body>
+
+</html>

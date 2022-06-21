@@ -249,50 +249,52 @@ def accuracy_precision_recall_fscore(test_sentiments,predictions,score):
     print('Recall:    {:2.2%} '.format(metrics.recall_score(test_sentiments, predictions, average='weighted')))
     print('F1 Score:  {:2.2%} '.format(metrics.f1_score(test_sentiments, predictions, average='weighted')))
 
-def custom_input() :
-    classifier, cv = load()
-    custom_review=""
-    while custom_review!="END" :
-        custom_review = input("Enter the Review you want to test :")
-        clean_custom_review = normalize_corpus([custom_review])
+def custom_input(review,cv,classifier) :
+        clean_custom_review = normalize_corpus([review])
         cv_test_features = cv.transform(clean_custom_review)
         result = classifier.predict_proba(cv_test_features)[0]
         if (result[0] > 0.5):
-            print("Negative")
+            return 0
         else:
-            print("Positive")
+            return 1
 
 def main() :
-    print("\n1. Train, Test and display Classification Report of the model\n2. Predict a custom review")
-    n=int(input("Enter your choice : "))
-    if n==1 :
-        reviews, sentiments = load_data()
-        normalize_train_reviews, normalize_test_reviews, train_sentiments, test_sentiments = preprocessing(reviews,sentiments)
-        print("Select one of the Feature extraction method")
-        a=int(input("1. Bag of words/n2. tf-idf"))
-        if a==1:
-            cv, cv_train_features, cv_test_features = bag_of_words(normalize_train_reviews, normalize_test_reviews)
-            print("Select one of the classification method")
-            print("1.Naive-Bayes/n2.Logistic Regression")
-            b = int(input("Enter your choice : "))
-            if b==1 :
-                predictions, score = Naive_Bayes(cv, cv_train_features, cv_test_features, train_sentiments,test_sentiments)
-                accuracy_precision_recall_fscore(test_sentiments, predictions, score)
-            else :
-                predictions, score = logistic_regression(cv, cv_train_features, cv_test_features, train_sentiments,test_sentiments)
-                accuracy_precision_recall_fscore(test_sentiments, predictions, score)
-        else :
-            cv, cv_train_features, cv_test_features = tf_idf(normalize_train_reviews, normalize_test_reviews)
-            print("Select one of the classification method")
-            print("1.Naive-Bayes/n2.Logistic Regression")
-            c=int(input("Enter your choice : "))
-            if c==1:
-                predictions, score = Naive_Bayes(cv, cv_train_features, cv_test_features, train_sentiments,test_sentiments)
-                accuracy_precision_recall_fscore(test_sentiments, predictions, score)
-            else:
-                predictions, score = logistic_regression(cv, cv_train_features, cv_test_features, train_sentiments,test_sentiments)
-                accuracy_precision_recall_fscore(test_sentiments, predictions, score)
+    print("\nTraining the model\n")
+    reviews, sentiments = load_data()
+    normalize_train_reviews, normalize_test_reviews, train_sentiments, test_sentiments = preprocessing(reviews,
+                                                                                                       sentiments)
+    print("Select one of the Feature extraction method\n")
+    a = int(input("1. Bag of words\n2. tf-idf\n"))
+    if a == 1:
+        cv, cv_train_features, cv_test_features = bag_of_words(normalize_train_reviews, normalize_test_reviews)
+        print("Select one of the classification method\n")
+        print("1.Naive-Bayes\n2.Logistic Regression\n")
+        b = int(input("Enter your choice : \n"))
+        if b == 1:
+            print("Testing the model\n")
+            predictions, score = Naive_Bayes(cv, cv_train_features, cv_test_features, train_sentiments, test_sentiments)
+            print("Classification Report of the model\n")
+            accuracy_precision_recall_fscore(test_sentiments, predictions, score)
+        else:
+            print("Testing the model\n")
+            predictions, score = logistic_regression(cv, cv_train_features, cv_test_features, train_sentiments,
+                                                     test_sentiments)
+            print("Classification Report of the model\n")
+            accuracy_precision_recall_fscore(test_sentiments, predictions, score)
     else:
-        custom_input()
+        cv, cv_train_features, cv_test_features = tf_idf(normalize_train_reviews, normalize_test_reviews)
+        print("Select one of the classification method\n")
+        print("1.Naive-Bayes\n2.Logistic Regression\n")
+        c = int(input("Enter your choice : \n"))
+        if c == 1:
+            print("Testing the model\n")
+            predictions, score = Naive_Bayes(cv, cv_train_features, cv_test_features, train_sentiments, test_sentiments)
+            print("Classification Report of the model\n")
+            accuracy_precision_recall_fscore(test_sentiments, predictions, score)
+        else:
+            print("Testing the model\n")
+            predictions, score = logistic_regression(cv, cv_train_features, cv_test_features, train_sentiments,
+                                                     test_sentiments)
+            print("Classification Report of the model\n")
+            accuracy_precision_recall_fscore(test_sentiments, predictions, score)
 
-main()

@@ -1,0 +1,22 @@
+label{
+  font-size: 35px;
+  color: #18978F;
+}
+input{
+  width: 900px;
+  height: 40px;
+  font-size: 25px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 285px 0;
+  text-align: center;
+}
+
+#heading{
+  text-align: center;
+  color: #54BAB9;
+  font-size: 40px;
+}
