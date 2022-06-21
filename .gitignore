@@ -1,0 +1,5 @@
+aclImdb/
+venv/
+.idea/
+__pycache__/
+my_model.pickle
