@@ -1,4 +1,4 @@
-# Sentiment-Analysis
+# Movie review opinion predictor
 To run this project first download and extract it 
 ## Install Python 
 To check if python is installed or not type the following in command prompt
